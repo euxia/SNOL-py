@@ -12,11 +12,14 @@ import re
 class SNOLInterpreter:
     def __init__(self):
         """Initialize the SNOL interpreter environment"""
-        self.variables = {}  # Dictionary to store variable names and their values
+        # Dictionary to store variable names and their values
+        self.variables = {}
+        # Reserved keywords in the SNOL language
         self.keywords = ["BEG", "PRINT", "EXIT!"]
 
     def is_valid_variable_name(self, name):
         """Check if a string is a valid variable name according to SNOL rules"""
+        # Variable names cannot be keywords and must match the naming pattern
         if name in self.keywords:
             return False
         return bool(re.match(r'^[a-zA-Z][a-zA-Z0-9]*$', name))
@@ -67,12 +70,14 @@ class SNOLInterpreter:
 
     def evaluate_expression(self, expr):
         """Evaluate a SNOL expression and return its value"""
-        # For simple cases - single variable or literal
+        # Handle simple cases - single variable or literal
         if len(expr) == 1:
             token = expr[0]
             if self.is_valid_literal(token):
+                # If it's a literal, parse and return its value
                 return self.parse_literal(token)
             elif self.is_valid_variable_name(token):
+                # If it's a variable, check if it's defined
                 if not self.is_defined_variable(token):
                     print(f"SNOL> Error! [{token}] is not defined!")
                     return None
@@ -144,19 +149,22 @@ class SNOLInterpreter:
                 print(f"SNOL> Unknown operator [{op}]")
                 return None
         
+        # If the expression doesn't match any valid pattern
         print("SNOL> Unknown command! Does not match any valid command of the language.")
         return None
 
     def process_command(self, command):
         """Process a SNOL command"""
         if not command:
-            return True  # Empty command, continue executing
+            # Empty command, continue executing
+            return True
             
         # Check for exit command
         if command == "EXIT!":
             print("Interpreter is now terminated...")
             return False  # Stop execution
             
+        # Tokenize the command into parts
         tokens = self.tokenize(command)
         
         # Handle assignment operation: var = expr
@@ -171,6 +179,7 @@ class SNOLInterpreter:
             # Evaluate the right side expression
             expr_result = self.evaluate_expression(tokens[2:])
             if expr_result is not None:
+                # Store the result in the variable
                 self.variables[var_name] = expr_result
             return True
             
@@ -201,9 +210,11 @@ class SNOLInterpreter:
             target = tokens[1]
             
             if self.is_valid_literal(target):
+                # If it's a literal, parse and print its value
                 value = self.parse_literal(target)
                 print(f"SNOL> {value}")
             elif self.is_valid_variable_name(target):
+                # If it's a variable, check if it's defined and print its value
                 if not self.is_defined_variable(target):
                     print(f"SNOL> Error! [{target}] is not defined!")
                     return True
@@ -226,18 +237,24 @@ class SNOLInterpreter:
         running = True
         while running:
             try:
+                # Prompt user for a command
                 command = input("Command: ")
+                # Process the command and determine if the interpreter should continue
                 running = self.process_command(command)
             except EOFError:
+                # Handle end-of-file (Ctrl+D) gracefully
                 print("\nInterpreter is now terminated...")
                 break
             except KeyboardInterrupt:
+                # Handle keyboard interrupt (Ctrl+C) gracefully
                 print("\nInterpreter is now terminated...")
                 break
             except Exception as e:
+                # Catch and display any unexpected errors
                 print(f"SNOL> Internal error: {str(e)}")
 
 
 if __name__ == "__main__":
+    # Create an instance of the interpreter and start it
     interpreter = SNOLInterpreter()
     interpreter.run()
