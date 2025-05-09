@@ -1,10 +1,10 @@
 """
 SNOL Interpreter - Simple Number-Only Language Interpreter
 Members:
-Palarpalar, Cherlie Joy
-Sosiana, Cedric 
-Suello, Carl Raymund
 Natividad, Deniel Dave
+Palarpalar, Cherlie Joy
+Siosana, Cedric 
+Suello, Carl Raymund
 """
 
 import re
