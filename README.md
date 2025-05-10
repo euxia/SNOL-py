@@ -3,6 +3,19 @@
 ## Overview
 SNOL (Simple Number-Only Language) is a custom programming language that handles integer and real values, operations, and expressions. This interpreter implements the SNOL language according to the provided specifications.
 
+## Code Structure
+
+Several modules based on functionality:
+
+1. **snol/init.py**: Defines the package and exports the main class
+2. **snol/validators.py**: Contains functions for validating variable names and literals
+3. **snol/tokenizer.py**: Handles tokenizing input commands
+4. **snol/parser.py**: Converts tokens to Reverse Polish Notation
+5. **snol/evaluator.py**: Evaluates RPN expressions
+6. **snol/processor.py**: Processes SNOL commands
+7. **snol/interpreter.py**: Contains the main SNOLInterpreter class
+8. **main.py**: Entry point that imports and runs the interpreter
+
 ## Setup Instructions
 
 ### Prerequisites
