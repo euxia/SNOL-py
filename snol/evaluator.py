@@ -41,7 +41,7 @@ def eval_rpn(rpn, ops, variables, is_valid_literal_func, is_valid_variable_name_
                 val = parse_literal_func(tok)
             else:
                 if not is_valid_variable_name_func(tok, {}):  # Empty set for keywords check here
-                    print(f"SNOL> Unknown word [{tok}]")
+                    print(f"SNOL> Error! [{tok}] is not a valid variable name.")
                     return None
                 if tok not in variables:
                     print(f"SNOL> Error! [{tok}] is not defined!")
