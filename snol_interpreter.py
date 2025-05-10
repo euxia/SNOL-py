@@ -112,7 +112,7 @@ class SNOLInterpreter:
                     val = self.parse_literal(tok)
                 else:
                     if not self.is_valid_variable_name(tok):
-                        print(f"SNOL> Unknown word [{tok}]")
+                        print(f"SNOL> Error! [{tok}] is not a valid variable name.")
                         return None
                     if tok not in self.variables:
                         print(f"SNOL> Error! [{tok}] is not defined!")
@@ -147,7 +147,7 @@ class SNOLInterpreter:
         if len(tokens) >= 3 and tokens[1] == '=':
             var = tokens[0]
             if not self.is_valid_variable_name(var):
-                print(f"SNOL> Unknown word [{var}]")
+                print(f"SNOL> Error! [{var}] is not a valid variable name.")
                 return True
             val = self.evaluate_expression(tokens[2:])
             if val is not None:
@@ -158,7 +158,7 @@ class SNOLInterpreter:
         if tokens[0] == "BEG" and len(tokens) == 2:
             var = tokens[1]
             if not self.is_valid_variable_name(var):
-                print(f"SNOL> Unknown word [{var}]")
+                print(f"SNOL> Error! [{var}] is not a valid variable name.")
                 return True
             print(f"SNOL> Please enter value for [{var}]:")
             ui = input("Input: ")
