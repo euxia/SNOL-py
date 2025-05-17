@@ -9,5 +9,6 @@ Suello, Carl Raymund
 
 from snol import SNOLInterpreter
 
+# Main entry point for the SNOL interpreter
 if __name__ == "__main__":
     SNOLInterpreter().run()

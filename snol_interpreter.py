@@ -39,8 +39,6 @@ class SNOLInterpreter:
         if self.is_float_literal(tok):   return float(tok)
         return None
 
-    import re
-
     def tokenize(self, cmd):
         # Regex: match negative/positive integers/floats, operators, or parentheses
         token_pattern = r'-?\d+\.\d+|-?\d+|[()+\-*/%=]|[A-Za-z][A-Za-z0-9]*'
