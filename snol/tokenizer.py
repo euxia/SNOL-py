@@ -7,6 +7,16 @@ import re
 
 def tokenize(cmd):
     """Split a command string into tokens, supporting negative numbers"""
-    # Regex: match negative/positive numbers, operators, or parentheses
-    token_pattern = r'-?\d+(?:\.\d+)?|[()+\-*/%=]'
-    return re.findall(token_pattern, cmd)
+    token_pattern = r'\d+\.\d+|\d+|[A-Za-z_][A-Za-z0-9_]*|[()+\-*/%=]'
+    tokens = re.findall(token_pattern, cmd)
+    result = []
+    i = 0
+    while i < len(tokens):
+        if tokens[i] == '-' and i + 1 < len(tokens):
+            if (i == 0 or tokens[i-1] in ('(', '=', '+', '-', '*', '/', '%')) and re.match(r'^\d+(\.\d+)?$', tokens[i+1]):
+                result.append('-' + tokens[i+1])
+                i += 2
+                continue
+        result.append(tokens[i])
+        i += 1
+    return result

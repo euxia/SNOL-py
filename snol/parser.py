@@ -3,8 +3,6 @@ Parser module for SNOL Interpreter
 Contains functions for parsing tokens into RPN notation
 """
 
-from snol.validators import is_valid_literal, is_valid_variable_name
-
 def to_rpn(tokens, ops, is_valid_variable_name_func, is_valid_literal_func, keywords):
     """Convert infix notation to Reverse Polish Notation"""
     out, stack = [], []

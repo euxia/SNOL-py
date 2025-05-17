@@ -3,7 +3,6 @@ Evaluator module for SNOL Interpreter
 Contains functions for evaluating RPN expressions
 """
 
-from snol.validators import is_valid_literal, is_valid_variable_name, parse_literal
 
 def eval_rpn(rpn, ops, variables, is_valid_literal_func, is_valid_variable_name_func, parse_literal_func):
     """Evaluate a Reverse Polish Notation expression"""
