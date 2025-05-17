@@ -31,13 +31,13 @@ Several modules based on functionality:
 
 2. **Create the executable**
    ```
-   pyinstaller --onefile snol_interpreter.py
+   pyinstaller --onefile main.py
    ```
 
 3. **Locate your executable**
    - The executable will be in the `dist` folder
-   - Windows: `dist\snol_interpreter.exe`
-   - macOS/Linux: `dist/snol_interpreter`
+   - Windows: `dist\main.exe`
+   - macOS/Linux: `dist/main`
 
 ### Rebuilding After Changes
 
@@ -45,19 +45,19 @@ If you make changes to the Python source code:
 
 1. **Rebuild the executable: Just do this**:
    ```
-   pyinstaller --onefile snol_interpreter.py
+   pyinstaller --onefile main.py
    ```
 
 2. **Clean previous build: It it causes problems** (optional):
    ```
    # Windows
    rmdir /s /q build dist
-   del snol_interpreter.spec
+   del main.spec
 
 ## Using the SNOL Interpreter
 
 ### Running the Interpreter
-- **Windows**: Double-click on `snol_interpreter.exe` or run it from the command line
+- **Windows**: Double-click on `main.exe` or run it from the command line
 
 ### SNOL Commands
 
